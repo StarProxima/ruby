@@ -1,5 +1,3 @@
-puts 'Hello World!'
-
 # 2
 # Принять имя пользователя как аргумент программы.
 # Поздороваться с пользователем с использованием форматирования
@@ -8,27 +6,24 @@ puts 'Hello World!'
 # скоро будет ruby и поставить различные комментарии для нескольких
 # языков.
 
+if ARGV.count < 1
+    puts "Введите имя пользователя"
+ 
+end
+
 name = ARGV[0]
 puts "Hello #{name}!"
+
 puts "Какой твой любимый язык программирования?"
-language = gets.chomp
+language = STDIN.gets.chomp
 
 case language
     when 'ruby'
     puts 'Ты подлиза!'
     when 'python'
     puts 'Ты не подлиза!'
+    when 'linux'
+    puts 'not nature!'
     else
     puts 'Скоро будет ruby!'
 end
-
-# 3.Продолжение предыдущего задания. Попросить пользователя
-# ввести команду языка ruby. И команду OC. Выполнить команду руби и
-# команду операционной системы.
-
-puts 'Введите команду ruby'
-ruby_command = gets.chomp
-puts 'Введите команду операционной системы'
-os_command = gets.chomp
-system(ruby_command)
-system(os_command)
