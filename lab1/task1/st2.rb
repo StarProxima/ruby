@@ -8,7 +8,6 @@
 
 if ARGV.count < 1
     puts "Введите имя пользователя"
- 
 end
 
 name = ARGV[0]
