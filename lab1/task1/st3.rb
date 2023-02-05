@@ -7,7 +7,7 @@ require 'open3'
 
 puts "Команда OS:"
 cmd = gets.chomp
-Open3.pipeline(cmd)
+system cmd
 
 puts "Код на Ruby:"
 rubyCmd = gets.chomp
