@@ -3,6 +3,11 @@
 
 require "../../utils.rb"
 
+if ARGV.length != 1
+    puts "Usage: ruby m3.rb <number>"
+    exit
+end
+
 def multiply_digits(number)
     number.digits.reduce(1) { |m, d| m * d }
 end

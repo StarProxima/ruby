@@ -18,5 +18,5 @@ def find_number_of_first_positive_element(array)
     throw "No positive elements"
 end
 
-puts "find_minimum: #{find_minimum(ARGV.map(&:to_i))}"
-puts "find_number_of_first_positive_element: #{find_number_of_first_positive_element(ARGV.map(&:to_i))}"
+# puts "find_minimum: #{find_minimum(ARGV.map(&:to_i))}"
+# puts "find_number_of_first_positive_element: #{find_number_of_first_positive_element(ARGV.map(&:to_i))}"

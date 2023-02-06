@@ -2,6 +2,11 @@
 
 require "../../utils.rb"
 
+if ARGV.length != 1
+    puts "Usage: ruby m1.rb <number>"
+    exit
+end
+
 def max_prime_divisor(number)
     (number.downto 2).each {
         |x| return x if number % x == 0 && prime?(x)

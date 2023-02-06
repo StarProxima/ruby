@@ -6,8 +6,9 @@
 # скоро будет ruby и поставить различные комментарии для нескольких
 # языков.
 
-if ARGV.count < 1
-    puts "Введите имя пользователя"
+if ARGV.length != 1
+    puts "Usage: ruby st2.rb <name>"
+    exit
 end
 
 name = ARGV[0]
