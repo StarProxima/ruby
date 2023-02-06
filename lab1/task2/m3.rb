@@ -1,13 +1,10 @@
 # Метод 3 Найти НОД максимального нечетного непростого делителя числа и
 # прозведения цифр данного числа.
 
+require "../../utils.rb"
+
 def multiply_digits(number)
     number.digits.reduce(1) { |m, d| m * d }
-end
-
-def prime?(number)
-    (2.upto Math.sqrt(number)).each { |x| return false if number % x == 0 }
-    true
 end
 
 def max_odd_non_prime_divisor(number)
