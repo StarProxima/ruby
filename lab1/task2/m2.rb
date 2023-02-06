@@ -2,7 +2,7 @@
 
 def multiply_digits_not_divisible_by_5(number)
     number.digits.reduce(1) {
-        |x, y| if y % 5 != 0 then x * y else x end
+        |m, d| if d % 5 != 0 then m * d else m end
     }
 end
 
