@@ -12,18 +12,19 @@ class Student
       @git = options[:git]
 
       self.phone = options[:phone]
+      
     end
 
     def self.valid_phone?(phone)
-        phone == nil || phone.is_a?(String) && phone.match?(/\A(\+)?(\d|\s){10,}\z/)
+        phone.nil? || phone.is_a?(String) && phone.match?(/\A(\+)?(\d|\s){10,}\z/)
     end
 
     def self.valid_telegram?(telegram)
-        telegram == nul || telegram.is_a?(String) && telegram.match?(/\A[a-zA-Z0-9]+\z/)
+        telegram.nil? || telegram.is_a?(String) && telegram.match?(/\A[a-zA-Z0-9]+\z/)
     end
     
     def self.valid_email?(email)
-        email == nil || email.is_a?(String) && email.match?(/\A[a-zA-Z0-9]+@[a-z]+.[a-z]+\z/)
+        email.nil? || email.is_a?(String) && email.match?(/\A[a-zA-Z0-9]+@[a-z]+.[a-z]+\z/)
     end
     
     def self.valid_git?(git)
@@ -35,6 +36,23 @@ class Student
           @phone = value
         else
           raise ArgumentError, "Invalid phone number format"
+        end
+    end
+
+    def validate
+        validate_git
+        validate_contact
+    end
+
+    def validate_git
+        if git.nil? || git.empty?
+        raise ArgumentError, "GitHub URL cannot be blank"
+        end
+    end
+
+    def validate_contact
+        if phone.nil? && telegram.nil? && mail.nil?
+        raise ArgumentError, "At least one contact method must be provided"
         end
     end
 
