@@ -56,6 +56,21 @@ class Student
         end
     end
 
+    def set_contacts(contacts)
+        contacts.each do |key, value|
+            case key.to_sym
+            when :phone
+            self.phone = value
+            when :telegram
+            self.telegram = value
+            when :mail
+            self.mail = value
+            else
+            raise ArgumentError, "Invalid contact type: #{key}"
+            end
+        end
+    end
+
     def to_s
         "ID: #{id}, Surname: #{surname}, First name: #{first_name}, Patronymic: #{patronymic}, Phone: #{phone}, Telegram: #{telegram}, Mail: #{email}, Git: #{git}"
     end
