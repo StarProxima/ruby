@@ -56,7 +56,7 @@ class Student
     end
     
     def self.valid_git?(git)
-        git == nil || git.is_a?(String) && git.match?(/\Ahttps?:\/\/github\.com\/[a-zA-Z0-9]+\/[a-zA-Z0-9]+\z/)
+        git == nil || git.is_a?(String) && git.match?(/\Ahttps:\/\/github\.com\/[a-zA-Z0-9]+\z/)
     end
 
     def phone=(value)
