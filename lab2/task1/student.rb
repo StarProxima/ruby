@@ -1,6 +1,6 @@
 class Student
     attr_accessor :id, :surname, :first_name, :patronymic, :phone, :telegram, :email, :git
-  
+    attr_reader :initials
     def initialize(options = { surname: '', first_name: '', patronymic: '' })
       @id = options[:id]
       @surname = options[:surname]
@@ -10,10 +10,24 @@ class Student
       @telegram = options[:telegram]
       @email = options[:email]
       @git = options[:git]
+      @initials = "#{first_name[0]}.#{patronymic[0]}."
 
       self.phone = options[:phone]
       
     end
+
+    def get_info
+        info = "#{surname} #{initials}."
+        info += " Git: #{git}" if git
+        if phone
+          info += " Phone: #{phone}"
+        elsif telegram
+          info += " Telegram: #{telegram}"
+        elsif email
+          info += " Mail: #{email}"
+        end
+        info
+      end
 
     def self.valid_phone?(phone)
         phone.nil? || phone.is_a?(String) && phone.match?(/\A(\+)?(\d|\s){10,}\z/)

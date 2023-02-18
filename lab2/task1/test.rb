@@ -10,7 +10,9 @@ puts Student.valid_git?('https://github.com/StarProxima')
 
 
 student1.phone = '+79186733922'
-student1.phone = '123'
+
+
+puts student1.get_info()
 
 puts(student1)
 puts(student2)
