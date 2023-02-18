@@ -18,6 +18,10 @@ puts student1.get_info()
 short_stud1 = Student_short.from_student(student1)
 short_stud2 = Student_short.new(0, 'К.Г.Б.', 'git', 'contact')
 
+Student.write_to_txt('students.txt', [student1, student2])
+puts Student.read_from_txt('students.txt')
+
+
 puts short_stud1
 puts short_stud2
 
