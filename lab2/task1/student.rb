@@ -12,5 +12,8 @@ class Student
       @git = options[:git]
     end
 
+    def to_s
+        "ID: #{id}, Surname: #{surname}, First name: #{first_name}, Patronymic: #{patronymic}, Phone: #{phone}, Telegram: #{telegram}, Mail: #{email}, Git: #{git}"
+    end
 end
 
