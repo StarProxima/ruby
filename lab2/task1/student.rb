@@ -10,7 +10,7 @@ class Student
       @telegram = options[:telegram]
       @email = options[:email]
       @git = options[:git]
-      @initials = "#{first_name[0]}.#{patronymic[0]}."
+      @initials = !first_name.nil? && !patronymic.nil? && first_name.length > 0 && patronymic.length > 0 ? "#{first_name[0]}.#{patronymic[0]}." : ''
 
       self.phone = options[:phone]
       
@@ -28,6 +28,20 @@ class Student
         end
         info
       end
+
+    def get_contact
+        info = ""
+        if phone
+            info += " Phone: #{phone}"
+        end
+        if telegram
+            info += " Telegram: #{telegram}"
+        end
+        if email
+            info += " Mail: #{email}"
+        end
+        info
+    end  
 
     def self.valid_phone?(phone)
         phone.nil? || phone.is_a?(String) && phone.match?(/\A(\+)?(\d|\s){10,}\z/)
@@ -114,7 +128,53 @@ class Student
       end
 
     def to_s
-        "ID: #{id}, Surname: #{surname}, First name: #{first_name}, Patronymic: #{patronymic}, Phone: #{phone}, Telegram: #{telegram}, Mail: #{email}, Git: #{git}"
+        "ID: #{id}, Surname: #{surname}, First name: #{first_name}, Patronymic: #{patronymic}, Phone: #{phone}, Telegram: #{telegram}, Email: #{email}, Git: #{git}"
     end
 end
 
+  class Student_short < Student
+    attr_reader :id, :surname_initials, :git, :contact
+
+
+    
+    def initialize(id, surname_initials, git, contact)
+        super({id: id, git: git})
+        @surname_initials = surname_initials
+        @contact = contact
+    end
+
+      
+    def self.from_student(student)
+        # super({id: student.id, surname: student.surname, first_name: student.first_name, 
+        #   patronymic: student.patronymic, phone: student.phone, telegram: student.telegram,
+        #   email: student.email, git: student.git})
+        
+        surname_initials = "#{student.surname} #{student.first_name[0]}.#{student.patronymic[0]}."
+        contact = student.get_contact()
+  
+        new(student.id, surname_initials, student.git, contact)
+      end
+
+    def to_s
+        "ID: #{id}, Surname initials: #{surname_initials}, Git: #{git}, Contacts: #{contact}"
+    end
+  
+    def id=(_)
+      raise ReadOnlyError, "Cannot set read-only attribute: id"
+    end
+  
+    def surname_initials=(_)
+      raise ReadOnlyError, "Cannot set read-only attribute: surname_initials"
+    end
+  
+    def git=(_)
+      raise ReadOnlyError, "Cannot set read-only attribute: git"
+    end
+  
+    def contact=(_)
+      raise ReadOnlyError, "Cannot set read-only attribute: contact"
+    end
+  end
+  
+  class ReadOnlyError < StandardError
+  end
