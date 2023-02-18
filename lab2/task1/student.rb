@@ -71,6 +71,22 @@ class Student
         end
     end
 
+    def self.read_from_txt(file_path)
+        students = []
+        begin
+          File.open(file_path, 'r') do |file|
+            file.each_line do |line|
+              id, surname, first_name, patronymic, phone, telegram, email, git = line.split(',')
+              params_to = { id: id, surname: surname, first_name: first_name, patronymic: patronymic, phone: phone, telegram: telegram, email: email, git: git }
+              Student.new(params_to) << students
+            end
+          end
+          students
+        rescue => exception
+          raise "File not found at the given address #{file_path}. Exception: #{exception.message}"
+        end
+      end
+
     def to_s
         "ID: #{id}, Surname: #{surname}, First name: #{first_name}, Patronymic: #{patronymic}, Phone: #{phone}, Telegram: #{telegram}, Mail: #{email}, Git: #{git}"
     end
