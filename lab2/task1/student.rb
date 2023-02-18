@@ -87,6 +87,18 @@ class Student
         end
       end
 
+      def self.write_to_txt(file_path, students)
+        begin
+          File.open(file_path, 'w') do |file|
+            students.each do |student|
+              file.puts "#{student.id},#{student.surname},#{student.first_name},#{student.patronymic},#{student.phone},#{student.telegram},#{student.email},#{student.git}"
+            end
+          end
+        rescue => exception
+          raise "File could not be written at the given address #{file_path}. Exception: #{exception.message}"
+        end
+      end
+
     def to_s
         "ID: #{id}, Surname: #{surname}, First name: #{first_name}, Patronymic: #{patronymic}, Phone: #{phone}, Telegram: #{telegram}, Mail: #{email}, Git: #{git}"
     end
