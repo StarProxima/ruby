@@ -44,7 +44,7 @@ class Student
     end  
 
     def self.valid_phone?(phone)
-        phone.nil? || phone.is_a?(String) && phone.match?(/\A(\+)?(\d|\s){10,}\z/)
+        phone.nil? || phone == '' ||  phone.is_a?(String) && phone.match?(/\A(\+)?(\d|\s){10,}\z/)
     end
 
     def self.valid_telegram?(telegram)
@@ -105,8 +105,9 @@ class Student
           File.open(file_path, 'r') do |file|
             file.each_line do |line|
               id, surname, first_name, patronymic, phone, telegram, email, git = line.split(',')
+            
               params_to = { id: id, surname: surname, first_name: first_name, patronymic: patronymic, phone: phone, telegram: telegram, email: email, git: git }
-              Student.new(params_to) << students
+              students << Student.new(params_to)
             end
           end
           students
