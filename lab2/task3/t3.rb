@@ -16,7 +16,7 @@ class DataTable
     end
   end
 
-  class Data_list
+  class DataList
     attr_reader :selected
   
     def initialize(data)
@@ -58,19 +58,44 @@ class DataTable
   end
 
 
+# class DataListStudentShort < DataList
+#   # realisation of get_names withot using each method cant be done
+#   # because of the realization of DataTabel class
+
+#   def get_data
+#     data = []
+#     each do |student|
+#       data << [student.id, student.surname, student.initials, student.git, student.contact]
+#     end
+#     DataTable.new(data)
+#   end
+
+#   def get_names
+#     ['ID', 'Surname', 'Initials', 'Git', 'Contact']
+#   end
+# end
 class DataListStudentShort < DataList
-  # realisation of get_names withot using each method cant be done
-  # because of the realization of DataTabel class
+  attr_reader :data_table
+
+  private
+
+  def parse_student_short(student_short)
+    [student_short.id, student_short.surname, student_short.initials, student_short.git, student_short.contact]
+  end
+
+  public
 
   def get_data
-    data = []
-    each do |student|
-      data << [student.id, student.surname, student.initials, student.git, student.contact]
-    end
-    DataTable.new(data)
+    @data.map { |student_short| parse_student_short(student_short) }
   end
-
+  def get_column_count
+    @data[0].instance_variables.count
+  end
+  def get_row_count
+    @data.count
+  end
   def get_names
-    ['ID', 'Surname', 'Initials', 'Git', 'Contact']
+    %w[id surname initials git contact]
   end
 end
+
