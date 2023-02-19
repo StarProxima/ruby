@@ -15,3 +15,14 @@ class DataTable
       @data[0].size
     end
   end
+
+  class Data_list
+
+  
+    def initialize(data)
+      @data = data
+     
+    end
+ 
+  end
+  
