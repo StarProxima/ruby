@@ -56,4 +56,21 @@ class DataTable
   
     attr_reader :data
   end
-  
+
+
+class DataListStudentShort < DataList
+  # realisation of get_names withot using each method cant be done
+  # because of the realization of DataTabel class
+
+  def get_data
+    data = []
+    each do |student|
+      data << [student.id, student.surname, student.initials, student.git, student.contact]
+    end
+    DataTable.new(data)
+  end
+
+  def get_names
+    ['ID', 'Surname', 'Initials', 'Git', 'Contact']
+  end
+end
