@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diagram</title>
+</head>
+<body>
+  <script src="https://unpkg.com/graphre/dist/graphre.js"></script>
+  <script src="https://unpkg.com/nomnoml/dist/nomnoml.js"></script>
+
+  <canvas id="target-canvas"></canvas>
+  <script>
+      var canvas = document.getElementById('target-canvas');
+      var source = `#direction: right
+#zoom: 0.9
+
+#font: Roboto
+#fontSize: 20
+#leading: 2
+#padding: 12
+
+#fillArrows: true
+#arrowSize: 0.5
+#spacing: 130
+
+#lineWidth: 1.5
+#stroke: #33322E
+
+#.class: fill=#FEDCC4 title=bold
+#.module: fill=#D9E6FF title=bold
+[<class> Student |
+   |
+  +initialize(last_name, first_name, father_name, options); +last_name=(new_last_name); +first_name=(new_first_name); +father_name=(new_father_name); +set_contacts(phone, telegram, email); +last_name_and_initials; +short_info; +to_s; +to_hash; +to_json |
+  self.from_hash(hash); self.from_json(json)
+]
+[<class> StudentBase |
+   |
+  +initialize(id, phone, telegram, email, git); +has_contacts?; +has_git?; +valid?; +short_contact; #phone=(new_phone); #telegram=(new_telegram); #git=(new_git); #email=(new_email) |
+  self.valid_name?(name); self.valid_phone?(phone); self.valid_telegram?(telegram); self.valid_git?(git); self.valid_email?(email)
+]
+[<class> StudentShort |
+   |
+  +initialize(id, info_str); +to_s |
+  self.from_student(student)
+]
+[Student] inherits <:- [StudentBase]
+[StudentShort] inherits <:- [StudentBase]
+`;
+      nomnoml.draw(canvas, source);
+  </script>
+</body>
+</html>

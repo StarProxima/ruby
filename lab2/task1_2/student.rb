@@ -25,8 +25,8 @@ class Student < StudentBase
     Student.new(first_name, last_name, father_name, **hash)
   end
 
-  def self.from_json_str(str)
-    params = JSON.parse(str, { symbolize_names: true })
+  def self.from_json(json)
+    params = JSON.parse(json, { symbolize_names: true })
     from_hash(params)
   end
 
@@ -84,7 +84,7 @@ class Student < StudentBase
     attrs
   end
 
-  def to_json_str
+  def to_json
     JSON.generate(to_hash)
   end
 end

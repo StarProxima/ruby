@@ -8,8 +8,8 @@ print("Student: \n")
 print(student)
 print("\n\n")
 
-json = student.to_json_str()
-studentFromJson = Student.from_json_str(json)
+json = student.to_json()
+studentFromJson = Student.from_json(json)
 
 print("Student from json: \n")
 print(studentFromJson)
@@ -36,8 +36,11 @@ print(studentShort)
 print("\n\n")
 
 puts Student.valid_phone?('+7918673844488')
-puts Student.valid_profile_name?('mfewef')
+puts Student.valid_telegram?('mfewef')
+puts Student.valid_git?('starproxima')
 puts Student.valid_email?('mfewef@yfa.ru')
+
+puts student.short_info
 
 
 # testStudentBase = StudentBase.new()
