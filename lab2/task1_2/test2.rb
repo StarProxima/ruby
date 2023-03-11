@@ -1,3 +1,6 @@
 require_relative 'student_base.rb'
+require_relative 'student_short.rb'
 
-studentBase = StudentBase.new()
+studentShort = StudentShort.new()
+
+testStudentBase = StudentBase.new()
