@@ -1,29 +1,43 @@
-require_relative "student"
+require_relative 'student_base.rb'
+require_relative 'student.rb'
+require_relative 'student_short.rb'
 
-student1 = Student.new({ surname: '1', first_name: '2', patronymic: '3'})
-student2 = Student.new({ surname: '3', first_name: '4', patronymic: '5', phine: '123'})
+student = Student.new('Фамилия', 'Имя', 'Отчество', id: 0)
+
+print("Student: \n")
+print(student)
+print("\n\n")
+
+json = student.to_json_str()
+studentFromJson = Student.from_json_str(json)
+
+print("Student from json: \n")
+print(studentFromJson)
+print("\n\n")
+
+hash = student.to_hash()
+studentFromHash = Student.from_hash(hash)
+
+print("Student from hash: \n")
+print(studentFromHash)
+print("\n\n")
+
+
+studentShortFromStudent = StudentShort.from_student(student)
+
+print("StudentShort from Student: \n")
+print(studentShortFromStudent)
+print("\n\n")
+
+studentShort = StudentShort.new(0, JSON.generate({"last_name_and_initials": "Фам. И. О."}))
+
+print("StudentShort: \n")
+print(studentShort)
+print("\n\n")
 
 puts Student.valid_phone?('+7918673844488')
-puts Student.valid_telegram?('mfewef')
+puts Student.valid_profile_name?('mfewef')
 puts Student.valid_email?('mfewef@yfa.ru')
-puts Student.valid_git?('https://github.com/StarProxima')
 
 
-student1.phone = '+79186733922'
-
-
-puts student1.get_info()
-
-# short_stud = Student_short.from_student(student1);
-short_stud1 = Student_short.from_student(student1)
-short_stud2 = Student_short.new(0, 'К.Г.Б.', 'git', 'contact')
-
-Student.write_to_txt('students.txt', [student1, student2])
-puts Student.read_from_txt('students.txt')
-
-
-puts short_stud1
-puts short_stud2
-
-puts(student1)
-puts(student2)
+# testStudentBase = StudentBase.new()
