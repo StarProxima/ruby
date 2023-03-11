@@ -23,15 +23,19 @@ class StudentBase
       end
     
     def self.valid_phone?(phone)
-    phone.match(/^\+?[78] ?[(-]?\d{3} ?[)-]?[ -]?\d{3}[ -]?\d{2}[ -]?\d{2}$/)
+     phone.match(/^\+?[78] ?[(-]?\d{3} ?[)-]?[ -]?\d{3}[ -]?\d{2}[ -]?\d{2}$/)
     end
 
-    def self.valid_profile_name?(profile_name)
-    profile_name.match(/^[a-zA-Z0-9_.]+$/)
+    def self.valid_telegram?(telegram)
+      telegram.match(/^[a-zA-Z0-9_.]+$/)
+    end
+
+    def self.valid_git?(git)
+      git.match(/^[a-zA-Z0-9_.]+$/)
     end
 
     def self.valid_email?(email)
-    email.match(/^(?:[a-z0-9!#$%&'*+\/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+\/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])$/)
+     email.match(/^(?:[a-z0-9!#$%&'*+\/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+\/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])$/)
     end
   
     def has_contacts?
@@ -69,13 +73,13 @@ class StudentBase
     end
   
     def telegram=(new_telegram)
-      raise ArgumentError, "Invalid argument: telegram=#{new_telegram}" unless new_telegram.nil? || StudentBase.valid_profile_name?(new_telegram)
+      raise ArgumentError, "Invalid argument: telegram=#{new_telegram}" unless new_telegram.nil? || StudentBase.valid_telegram?(new_telegram)
   
       @telegram = new_telegram
     end
   
     def git=(new_git)
-      raise ArgumentError, "Invalid argument: git=#{new_git}" unless new_git.nil? || StudentBase.valid_profile_name?(new_git)
+      raise ArgumentError, "Invalid argument: git=#{new_git}" unless new_git.nil? || StudentBase.valid_git?(new_git)
   
       @git = new_git
     end
